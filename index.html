@@ -103,30 +103,10 @@ body::before {
         transform: translateY(120vh);
     }
 }
-
-.volume-box {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    backdrop-filter: blur(10px);
-    padding: 10px 15px;
-    border-radius: 19px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 3;
-}
-
-.volume-slider {
-    width: 100px;
-}
 </style>
 </head>
 
 <body>
-
-<!-- 🎵 LOFI MUSIC -->
-<audio id="bg-music" loop preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
-</audio>
 
 <div class="container">
     <div class="avatar">
@@ -145,48 +125,8 @@ body::before {
     <button class="btn" onclick="window.open('https://www.youtube.com/@loopcxz')">Youtube</button>
 </div>
 
-<div class="volume-box">
-  <input class="volume-slider" type="range" min="0" max="1" step="0.01" value="0.5"
-         oninput="
-         let audio = document.getElementById('bg-music');
-         audio.volume = this.value;
-         ">
-</div>
-
 <script>
-const audio = document.getElementById("bg-music");
-
-// 🔥 thử autoplay (thường sẽ bị chặn)
-audio.play().catch(() => {
-    console.log("Autoplay bị chặn");
-});
-
-// 🔥 click để unlock audio (giống guns.lol)
-function unlockAudio() {
-    audio.play();
-
-    // fade in mượt
-    let vol = 0;
-    let fade = setInterval(() => {
-        if (vol < 0.5) {
-            vol += 0.02;
-            audio.volume = vol;
-        } else {
-            clearInterval(fade);
-        }
-    }, 50);
-
-    document.removeEventListener("click", unlockAudio);
-    document.removeEventListener("touchstart", unlockAudio);
-}
-
-document.addEventListener("click", unlockAudio);
-document.addEventListener("touchstart", unlockAudio);
-
-// volume mặc định
-audio.volume = 0;
-
-// 🌧️ hiệu ứng mưa
+// 🌧️ hiệu ứng mưa (giữ nguyên)
 for (let i = 0; i < 12; i++) {
     let drop = document.createElement("div");
     drop.classList.add("rain");
