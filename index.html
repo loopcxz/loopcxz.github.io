@@ -1,10 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Website của tôi</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>loopxz</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: #000;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #000000, #050505);
+    z-index: 0;
+}
+
+
+.container {
+    text-align: center;
+    z-index: 2;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 25px;
+    overflow: hidden;
+    margin: auto;
+    box-shadow: 0 0 25px #fff, 0 0 60px #fff;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.title {
+    font-size: 50px;
+    margin-top: 25px;
+    text-shadow: 0 0 15px #fff, 0 0 35px #fff;
+}
+
+.subtitle {
+    margin: 10px 0;
+    opacity: 0.6;
+}
+
+.highlight {
+    text-shadow: 0 0 10px #fff;
+}
+
+
+.btn {
+    margin: 8px;
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: 1px solid #fff;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 10px #fff;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #fff, 0 0 50px #fff;
+}
+
+.rain {
+    position: fixed;
+    top: -50px;
+    width: 2px;
+    height: 20px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0 10px #fff, 0 0 25px #fff;
+    animation: fall linear infinite;
+    z-index: 1;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(120vh);
+    }
+}
+</style>
 </head>
+
 <body>
-    <h1>Xin chào 👋</h1>
-    <p>Đây là website miễn phí của tôi!</p>
+
+<div class="container">
+    <div class="avatar">
+        <img src="https://media.giphy.com/media/lK9FAxyLQXKtkU2vDR/giphy.gif">
+    </div>
+
+    <div class="title">Loopxz</div>
+    <div class="subtitle">He/Him</div>
+
+    <h2><span class="highlight">Glimpse of us</span></h2>
+
+    <div class="stats">About myself...</div>
+<button class="btn" onclick="window.open('https://discordapp.com/users/933342549932929034')">Discord</button>
+
+<button class="btn" onclick="window.open('https://www.instagram.com/__lebaloi/')">Instagram</button>
+
+<button class="btn" onclick="window.open('https://github.com/loopcxz')">Github</button>
+
+</div>
+
+<script>
+for (let i = 0; i < 12; i++) {
+    let drop = document.createElement("div");
+    drop.classList.add("rain");
+
+    drop.style.left = Math.random() * 100 + "vw";
+    drop.style.animationDuration = (Math.random() * 1.5 + 0.7) + "s";
+    drop.style.opacity = Math.random();
+
+    document.body.appendChild(drop);
+}
+</script>
+
 </body>
 </html>
