@@ -17,27 +17,20 @@ font-family: 'Poppins', sans-serif;
 
 body {
     height: 100vh;
-    background: #000;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-}
 
-body::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, #000000, #050505);
-    z-index: 0;
+    background: radial-gradient(circle at 50% 30%, #0a0a0a, #000 80%);
 }
 
 .container {
     text-align: center;
     z-index: 2;
 }
+
 
 .avatar {
     width: 150px;
@@ -46,6 +39,13 @@ body::before {
     overflow: hidden;
     margin: auto;
     box-shadow: 0 0 25px #fff, 0 0 60px #fff;
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 25px #fff, 0 0 60px #fff; }
+    50% { box-shadow: 0 0 40px #fff, 0 0 100px #fff; }
+    100% { box-shadow: 0 0 25px #fff, 0 0 60px #fff; }
 }
 
 .avatar img {
@@ -82,31 +82,101 @@ body::before {
 }
 
 .btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) translateY(-3px);
     box-shadow: 0 0 25px #fff, 0 0 50px #fff;
 }
 
-.rain {
+
+.small-star {
     position: fixed;
-    top: -50px;
     width: 2px;
-    height: 20px;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 0 10px #fff, 0 0 25px #fff;
-    animation: fall linear infinite;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+
+.star {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background: white;
+    clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 
+        68% 57%, 79% 91%, 
+        50% 70%, 21% 91%, 
+        32% 57%, 2% 35%, 39% 35%
+    );
+    animation: twinkle 2s infinite alternate, rotateStar 6s linear infinite;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.2; }
+    to { opacity: 1; }
+}
+
+@keyframes rotateStar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
+.moon {
+    position: fixed;
+    top: 50px;
+    right: 80px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #fff, #ddd);
+    border-radius: 50%;
+    box-shadow: 0 0 30px #fff, 0 0 80px #fff;
     z-index: 1;
 }
 
-@keyframes fall {
-    to {
-        transform: translateY(120vh);
-    }
+
+.pixel-cat {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-family: monospace;
+    font-size: 18px;
+    color: #ccc;
+    white-space: pre;
+    z-index: 3;
+
+    animation: catFloat 3s ease-in-out infinite;
+}
+
+.pixel-cat::after {
+    content: "~";
+    margin-left: 5px;
+    display: inline-block;
+    animation: tail 0.5s infinite alternate;
+}
+
+@keyframes catFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes tail {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(20deg); }
 }
 </style>
 </head>
 
 <body>
+
+<div class="moon"></div>
+
+
+<div class="pixel-cat">
+ /\_/\  
+( o.o ) 
+ > ^ <
+</div>
 
 <div class="container">
     <div class="avatar">
@@ -126,16 +196,22 @@ body::before {
 </div>
 
 <script>
-// 🌧️ hiệu ứng mưa (giữ nguyên)
-for (let i = 0; i < 12; i++) {
-    let drop = document.createElement("div");
-    drop.classList.add("rain");
 
-    drop.style.left = Math.random() * 100 + "vw";
-    drop.style.animationDuration = (Math.random() * 1.5 + 0.7) + "s";
-    drop.style.opacity = Math.random();
+for (let i = 0; i < 50; i++) {
+    let s = document.createElement("div");
+    s.className = "small-star";
+    s.style.top = Math.random() * 100 + "vh";
+    s.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(s);
+}
 
-    document.body.appendChild(drop);
+
+for (let i = 0; i < 20; i++) {
+    let s = document.createElement("div");
+    s.className = "star";
+    s.style.top = Math.random() * 100 + "vh";
+    s.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(s);
 }
 </script>
 
